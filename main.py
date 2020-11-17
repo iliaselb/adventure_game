@@ -1,4 +1,13 @@
 def generate_empty_map(nb_rows, nb_cols):
+    colums = []
+    empty_map = []
+
+    for _ in range(nb_cols):
+        colums.append("")
+    for _ in range(nb_rows):
+        empty_map.append(colums)
+    return empty_map
+
     """
     Return a multi-dimentional list, with given nb of rows and columns.
     All elements should be empty strings --> ""
