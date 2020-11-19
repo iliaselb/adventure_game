@@ -1,13 +1,9 @@
+import random
+import numpy as np
+
+
+
 def generate_empty_map(nb_rows, nb_cols):
-    colums = []
-    empty_map = []
-
-    for _ in range(nb_cols):
-        colums.append("")
-    for _ in range(nb_rows):
-        empty_map.append(colums)
-    return empty_map
-
     """
     Return a multi-dimentional list, with given nb of rows and columns.
     All elements should be empty strings --> ""
@@ -18,8 +14,76 @@ def generate_empty_map(nb_rows, nb_cols):
     if nb_rows < 0 or nb_cols < 0:
         return None
 
-    # TODO continue
+    columns = []
+    empty_map = []
+    np_empty_map = np.array(empty_map)
+    for _ in range(nb_cols):
+        columns.append("")
+    for _ in range(nb_rows):
+        empty_map.append(columns)
+
+    return np_empty_map
+
+
+
+   # TODO map_dimension weg doen
+
+
+def insert_monsters_into(map: list):
+    """
+    Insert monsters randomly in positions of given map (list) by changing the value at
+    that position into
+    the string: 'M'. Every position of the map has 20% chance to get a monster.
+    :param map: a list as is returned by generateEmptyMap()
+    :return: the new map (with the added monsters)
+    """
+    assert len(map) > 0
+
+    nb_rows = len(map)
+    nb_cols = len(map[0])
+    monsters = random.sample([*range(nb_rows * nb_cols)], nb_rows * nb_cols)
+    i = 0
+
+    while i < len(monsters):
+        if monsters[i] <= nb_rows * nb_cols * 0.2:
+            map[random.randint(0, nb_rows-1)][random.randint(0, nb_cols-1)] = "M"
+        i += 1
+
+    return map
+
+
+
+def make_home(map):
+    """
+    Inserts a string 'H' on a random position in the given map. This position may not
+    contain any monster.
+    :param map: a list as is returned by generateEmptyMap()
+    :return: the new map (with the added home)
+    """
+    nb_rows = len(map)
+    nb_cols = len(map[0])
+
+    map[random.randint(0, nb_rows-1)][random.randint(0, nb_cols-1)] = "H"
+    return map
+
+
+def insert_player(map):
+    """
+    Inserts a string 'P' on a random position in the given map. This position may not
+    contain any monster.
+    :param map: a list as is returned by generateEmptyMap()
+    :return: the new map (with the added player)
+    """
+
+    nb_rows = len(map)
+    nb_cols = len(map[0])
+
+    map[random.randint(0, nb_rows-1)][random.randint(0, nb_cols-1)] = "P"
+    return map
+
+
 
 
 if __name__ == '__main__':
     pass  # TODO game algorithm
+
