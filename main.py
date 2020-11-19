@@ -37,15 +37,7 @@ def insert_monsters_into(map: list):
     """
     assert len(map) > 0
 
-    nb_rows = len(map)
-    nb_cols = len(map[0])
-    monsters = random.sample([*range(100)], nb_rows * nb_cols)
-    i = 0
-
-    while i < nb_rows * nb_cols:
-        if monsters[i] <= nb_rows * nb_cols * 0.2:
-            map[random.randint(0, nb_rows-1)][random.randint(0, nb_cols-1)] = "M"
-        i += 1
+    #TODO Adam fix dit
 
     return map
 
@@ -60,9 +52,14 @@ def make_home(map):
     """
     nb_rows = len(map)
     nb_cols = len(map[0])
+    home_in_m = True
 
-    if map[random.randint(0, nb_rows-1)][random.randint(0, nb_cols-1)] != "M" in map:
-        map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] = "H"
+    while home_in_m:
+
+        if map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] != "M" in map:
+            map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] = "H"
+            home_in_m = False
+
     return map
 
 
@@ -76,9 +73,14 @@ def insert_player(map):
 
     nb_rows = len(map)
     nb_cols = len(map[0])
+    player_in_m = True
 
-    if map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] != "M" in map:
-        map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] = "P"
+    while player_in_m:
+
+        if map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] != "M" in map:
+            map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] = "P"
+            player_in_m = False
+
     return map
 
 
