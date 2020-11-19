@@ -77,7 +77,8 @@ def insert_player(map):
     nb_rows = len(map)
     nb_cols = len(map[0])
 
-    map[random.randint(0, nb_rows-1)][random.randint(0, nb_cols-1)] = "P"
+    if map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] != "M" in map:
+        map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] = "P"
     return map
 
 
