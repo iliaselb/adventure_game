@@ -12,19 +12,11 @@ def generate_empty_map(nb_rows, nb_cols):
     if nb_rows < 0 or nb_cols < 0:
         return None
 
-    columns = []
     empty_map = []
-
-    for _ in range(nb_cols):
-        columns.append("")
     for _ in range(nb_rows):
-        empty_map.append(columns)
+        empty_map.append(["" for _ in range(nb_cols)])
 
     return empty_map
-
-
-
-   # TODO map_dimension weg doen
 
 
 def insert_monsters_into(map: list):
@@ -37,10 +29,17 @@ def insert_monsters_into(map: list):
     """
     assert len(map) > 0
 
-    #TODO Adam fix dit
+    nb_rows = len(map)
+    nb_cols = len(map[0])
+    monsters = random.sample([*range(100)], nb_rows * nb_cols)
+    i = 0
+
+    while i < nb_rows * nb_cols:
+        if monsters[i] <= nb_rows * nb_cols * 0.2:
+            map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] = "M"
+        i += 1
 
     return map
-
 
 
 def make_home(map):
@@ -55,9 +54,10 @@ def make_home(map):
     home_in_m = True
 
     while home_in_m:
-
-        if map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] != "M" in map:
-            map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] = "H"
+        random_row = random.randint(0, nb_rows - 1)
+        random_col = random.randint(0, nb_cols - 1)
+        if map[random_row][random_col] != "M" and map[random_row][random_col] != "P":
+            map[random_row][random_col] = "H"
             home_in_m = False
 
     return map
@@ -76,19 +76,13 @@ def insert_player(map):
     player_in_m = True
 
     while player_in_m:
-
-        if map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] != "M" in map:
-            map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] = "P"
+        random_row = random.randint(0, nb_rows - 1)
+        random_col = random.randint(0, nb_cols - 1)
+        if map[random_row][random_col] != "M" and map[random_row][random_col] != "H":
+            map[random_row][random_col] = "P"
             player_in_m = False
 
     return map
-
-
-
-
-
-    #TODO check with Adam
-
 
 
 
