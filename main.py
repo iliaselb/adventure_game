@@ -1,6 +1,4 @@
 import random
-import numpy as np
-
 
 
 def generate_empty_map(nb_rows, nb_cols):
@@ -16,13 +14,13 @@ def generate_empty_map(nb_rows, nb_cols):
 
     columns = []
     empty_map = []
-    np_empty_map = np.array(empty_map)
+
     for _ in range(nb_cols):
         columns.append("")
     for _ in range(nb_rows):
         empty_map.append(columns)
 
-    return np_empty_map
+    return empty_map
 
 
 
@@ -41,10 +39,10 @@ def insert_monsters_into(map: list):
 
     nb_rows = len(map)
     nb_cols = len(map[0])
-    monsters = random.sample([*range(nb_rows * nb_cols)], nb_rows * nb_cols)
+    monsters = random.sample([*range(100)], nb_rows * nb_cols)
     i = 0
 
-    while i < len(monsters):
+    while i < nb_rows * nb_cols:
         if monsters[i] <= nb_rows * nb_cols * 0.2:
             map[random.randint(0, nb_rows-1)][random.randint(0, nb_cols-1)] = "M"
         i += 1
@@ -63,7 +61,8 @@ def make_home(map):
     nb_rows = len(map)
     nb_cols = len(map[0])
 
-    map[random.randint(0, nb_rows-1)][random.randint(0, nb_cols-1)] = "H"
+    if map[random.randint(0, nb_rows-1)][random.randint(0, nb_cols-1)] != "M" in map:
+        map[random.randint(0, nb_rows - 1)][random.randint(0, nb_cols - 1)] = "H"
     return map
 
 
@@ -80,6 +79,12 @@ def insert_player(map):
 
     map[random.randint(0, nb_rows-1)][random.randint(0, nb_cols-1)] = "P"
     return map
+
+
+
+
+
+    #TODO check with Adam
 
 
 
