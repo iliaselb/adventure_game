@@ -1,5 +1,4 @@
 import random
-import os
 
 
 def generate_empty_map(nb_rows, nb_cols):
@@ -274,7 +273,6 @@ if __name__ == '__main__':
     game_map = initialize_game(10, 10)
     i = 0
     while not is_game_over(char, game_map):
-        os.system('cls')
         print('\n'.join(map(str, game_map)))
         move = input()
 
