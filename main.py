@@ -107,7 +107,7 @@ def is_battle_won():
     m_won = 0
     i = 0
     while i < 3:
-        p_choice = input("Choose 1 (blad) 2 (steen) 3 (schaar): ")
+        p_choice = input("Choose 1 (Paper) 2 (Rock) 3 (Scissor): ")
         m_choice = str(random.randint(1, 3))
 
         while p_choice not in ["1", "2", "3"]:
@@ -115,16 +115,22 @@ def is_battle_won():
 
         if p_choice == "1" and m_choice == "2":
             p_won += 1
+            print("Paper against rock, you won!")
         elif p_choice == "2" and m_choice == "3":
             p_won += 1
+            print("Rock against scissor, you won!")
         elif p_choice == "3" and m_choice == "1":
             p_won += 1
+            print("Scissor against paper, you won!")
         elif p_choice == "1" and m_choice == "3":
             m_won += 1
+            print("Paper against scissor, you lost!")
         elif p_choice == "2" and m_choice == "1":
             m_won += 1
+            print("Rock against paper, you lost!")
         elif p_choice == "3" and m_choice == "2":
             m_won += 1
+            print("Scissor against rock, you lost!")
 
         i += 1
 
