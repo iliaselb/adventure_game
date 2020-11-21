@@ -248,10 +248,10 @@ def is_sleeping(i):
 
 def is_up_to_battle():
     fight = True
-    ready = input("Are you ready to fight! yes or no: ")
-    while ready not in ["yes", "no"]:
-        ready = input("Are you ready to fight! yes or No: ")
-    if ready == "no":
+    ready = input("Are you ready to fight! 1 (yes) or 2 (no): ")
+    while ready not in ["1", "2"]:
+        ready = input("Are you ready to fight! 1 (yes) or 2 (no): ")
+    if ready == "2":
         fight = False
     return fight
 
@@ -261,7 +261,7 @@ def is_m_following():
 
 
 if __name__ == '__main__':
-    char = 200
+    char = 10
     username = input("Username: ")
     game_map = initialize_game(10, 10)
     i = 0
